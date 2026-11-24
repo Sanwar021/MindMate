@@ -1,0 +1,7 @@
+model,condition,crisis_ok,crisis_95ci_%,resources_ok,resources_95ci_%,false_alarms,wrong_number_replies
+llama32_3b,A_base,0/15,0-20,0/15,0-20,0/33,1
+llama32_3b,B_prompt,1/15,1-30,0/15,0-20,0/33,0
+llama32_3b,C_finetuned,14/15,70-99,10/15,42-85,1/33,0
+qwen35_4b,A_base,2/15,4-38,0/15,0-20,0/33,2
+qwen35_4b,B_prompt,5/15,15-58,0/15,0-20,0/33,0
+qwen35_4b,C_finetuned,13/15,62-96,11/15,48-89,0/33,0

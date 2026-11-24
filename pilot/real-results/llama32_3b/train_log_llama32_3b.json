@@ -1,0 +1,11 @@
+{
+  "model": "llama32_3b",
+  "train_mode": "replies",
+  "train_file": "train_50.jsonl",
+  "examples": 669,
+  "epochs": 2,
+  "max_seq_len": 4096,
+  "train_minutes": 22.8,
+  "first_logged_loss": 1.808,
+  "final_logged_loss": 1.044
+}

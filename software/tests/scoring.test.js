@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { scoreAssessment, detectRisk, crisisReply } from '../server/scoring.js';
+import { retrieveKnowledge } from '../server/knowledge.js';
+import { answerWithKnowledge } from '../server/assistant.js';
+import { qaBank, qaStats, findPrewrittenAnswer } from '../server/qa-bank.js';
+test('scores zero response correctly',()=>{const r=scoreAssessment({phq:Array(9).fill(0),gad:Array(7).fill(0),pss:Array(4).fill(0)});assert.equal(r.phq9,0);assert.equal(r.gad7,0);assert.equal(r.pss4,8)});
+test('flags PHQ self-harm item as higher concern',()=>{const phq=Array(9).fill(0);phq[8]=1;assert.equal(scoreAssessment({phq}).concern,'Higher concern')});
+test('recognizes multilingual crisis phrases',()=>{assert.equal(detectRisk('I want to kill myself').level,'crisis');assert.equal(detectRisk('আমি মরে যেতে চাই').level,'crisis');assert.equal(detectRisk('Amar onek stress').level,'distress')});
+test('does not treat common exam hyperbole as a crisis',()=>{assert.notEqual(detectRisk('This exam will kill me lol').level,'crisis')});
+test('provides language-matched crisis responses with required contacts',()=>{for(const [message,script] of [['I want to die',/I’m really glad/],['Ami morte chai',/Apni amake/],['আমি মরে যেতে চাই',/[ঀ-৿]/]]){const reply=crisisReply(message);assert.match(reply,script);assert.match(reply,/999|৯৯৯/);assert.match(reply,/09612-119911/);assert.match(reply,/09643-262626/);assert.match(reply,/09678-678-778/)}});
+test('retrieves relevant multilingual knowledge',()=>{assert.equal(retrieveKnowledge('How do I manage exam stress?')[0].id,'exam-stress');assert.equal(retrieveKnowledge('Amar ghum hoy na')[0].id,'sleep');assert.equal(retrieveKnowledge('PHQ-9 means what?')[0].id,'phq')});
+test('contains at least 500 ready question-answer entries',()=>{assert.equal(qaStats.count,500);assert.equal(qaBank.length,500);assert.equal(qaStats.topics,25);assert.ok(qaBank.every(x=>x.question&&x.answer))});
+test('retrieves 500 ready answers quickly',()=>{const started=performance.now();for(const item of qaBank)assert.ok(findPrewrittenAnswer(item.question));assert.ok(performance.now()-started<250)});
+test('answers common Banglish questions without slow generation',async()=>{const started=performance.now();const r=await answerWithKnowledge({message:'Amar ghum-er shomossha, ki korbo?'});assert.equal(r.engine,'prewritten-qa');assert.match(r.reply,/ghum|sleep/i);assert.ok(performance.now()-started<100)});
+test('keeps Banglish answers respectful',async()=>{const r=await answerWithKnowledge({message:'Amar ghum-er shomossha, ki korbo?'});assert.match(r.reply,/korun|nin|bolun/);assert.doesNotMatch(r.reply,/\bkoro\b|\bnao\b|\bbolo\b/i)});
+test('answers Bangla-script questions in Bangla script',async()=>{const r=await answerWithKnowledge({message:'আমার মন খারাপ হলে কী করব?'});assert.match(r.reply,/[ঀ-৿]/)});
+test('responds naturally to a greeting instead of the knowledge fallback',async()=>{const r=await answerWithKnowledge({message:'hello there'});assert.equal(r.engine,'conversation-rule');assert.match(r.reply,/Hello.*MindMate/i);assert.doesNotMatch(r.reply,/not have enough reviewed information/i)});

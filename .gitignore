@@ -1,0 +1,11 @@
+software/node_modules/
+software/dist/
+software/.env
+software/server/data/*.json
+!software/server/data/.gitkeep
+**/__pycache__/
+**/.pytest_cache/
+*.pyc
+*.log
+*.zip
+**/blind_key_DO_NOT_SHARE.csv

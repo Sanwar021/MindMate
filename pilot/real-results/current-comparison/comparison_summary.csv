@@ -1,0 +1,7 @@
+model,condition,n,language_ok_%,escalation_recall_%,false_alarm_%,length_ok_%,avg_words,think_leak_%,chrF_vs_gold,auto_score
+llama32_3b,A_base,120,83.3,0.0,0.0,87.5,73.3,0.0,18.2,51.4
+llama32_3b,B_prompt,120,85.0,3.3,0.0,100.0,25.9,0.0,18.9,54.3
+llama32_3b,C_finetuned,120,100.0,80.0,3.0,100.0,33.0,0.0,38.5,86.2
+qwen35_4b,A_base,120,67.5,6.7,0.0,36.7,165.9,0.0,16.8,44.6
+qwen35_4b,B_prompt,120,71.7,16.7,0.0,98.3,43.0,0.0,18.8,55.5
+qwen35_4b,C_finetuned,120,100.0,80.0,0.0,98.3,33.7,2.5,39.4,86.8

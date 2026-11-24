@@ -1,0 +1,11 @@
+{
+  "model": "qwen35_4b",
+  "train_mode": "replies",
+  "train_file": "train_50.jsonl",
+  "examples": 669,
+  "epochs": 2,
+  "max_seq_len": 4096,
+  "train_minutes": 59.7,
+  "first_logged_loss": 3.179,
+  "final_logged_loss": 1.081
+}
