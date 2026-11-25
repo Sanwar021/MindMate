@@ -1,0 +1,51 @@
+{
+  "model_key": "gemma4_e4b",
+  "base_model": "unsloth/gemma-4-E4B-it",
+  "gpu": "Tesla T4",
+  "platform": "Google Colab (free T4)",
+  "train_file": "train_50.jsonl",
+  "train_records": 150,
+  "method": "Unsloth 4-bit QLoRA",
+  "lora_r": 16,
+  "lora_alpha": 16,
+  "epochs": 2,
+  "learning_rate": 0.0002,
+  "batch_size": 1,
+  "grad_accum": 8,
+  "effective_batch": 8,
+  "max_seq_len": 4096,
+  "max_new_tokens": 600,
+  "decoding": "greedy",
+  "repetition_penalty": 1.05,
+  "seed": 3407,
+  "optimizer": "adamw_8bit",
+  "training_time_min": 11.9,
+  "final_train_loss": 3.236,
+  "used_hi_opener": false,
+  "loss_history": [
+    {
+      "loss": 3.963,
+      "grad_norm": 4.506,
+      "learning_rate": 0.00016,
+      "epoch": 1.0
+    },
+    {
+      "loss": 2.508,
+      "grad_norm": 0.9523,
+      "learning_rate": 4e-05,
+      "epoch": 2.0
+    }
+  ],
+  "trainer_metrics": {
+    "train_runtime": 714.6,
+    "train_samples_per_second": 0.101,
+    "train_steps_per_second": 0.014,
+    "train_loss": 3.236,
+    "epoch": 2.0
+  },
+  "eval_seconds": {
+    "A_base": 905,
+    "B_prompt": 429,
+    "C_finetuned": 415
+  }
+}

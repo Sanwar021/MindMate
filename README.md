@@ -34,7 +34,7 @@ Right-click `Verify-Project.ps1` and choose **Run with PowerShell**. A successfu
 
 ## Run the model pilot
 
-A CUDA GPU is required for new model runs. Genuine Qwen3.5-4B and Llama 3.2 3B results are already included and visible in the Admin dashboard. Gemma remains pending; no Gemma result has been invented.
+A CUDA GPU is required for new model runs. Genuine Gemma 4 E4B, Qwen3.5-4B, and Llama 3.2 3B automatic pilot results are included and visible in the Admin dashboard.
 
 Upload `pilot/` to Kaggle or Colab, enable a T4 GPU, and run one model per session:
 
@@ -56,11 +56,11 @@ Two people must then complete separate copies of `blind_rating_sheet.csv`. Impor
 
 ## What remains unfinished
 
-Only external GPU work remains:
+The automatic three-model pilot is complete. The remaining work requires human and counsellor review:
 
-1. Complete the Gemma run.
-2. Complete two human blind ratings.
-3. Import the genuine Gemma and rating outputs in Admin.
-4. Use the selected winner for final full-data training after counsellor review.
+1. Complete two independent human blind ratings.
+2. Import both completed rating outputs in Admin.
+3. Improve and rerun the pilot because no model reaches the fixed 90% escalation-recall gate.
+4. Use a safety-passing winner for final full-data training after counsellor review.
 
 Until those steps are complete, the correct project status is **waiting for scores and ratings**.

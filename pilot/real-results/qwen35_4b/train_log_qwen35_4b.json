@@ -1,11 +1,51 @@
 {
-  "model": "qwen35_4b",
-  "train_mode": "replies",
+  "model_key": "qwen35_4b",
+  "base_model": "unsloth/Qwen3.5-4B",
+  "gpu": "Tesla T4",
+  "platform": "Google Colab (free T4)",
   "train_file": "train_50.jsonl",
-  "examples": 669,
+  "train_records": 150,
+  "method": "Unsloth 4-bit QLoRA",
+  "lora_r": 16,
+  "lora_alpha": 16,
   "epochs": 2,
+  "learning_rate": 0.0002,
+  "batch_size": 1,
+  "grad_accum": 8,
+  "effective_batch": 8,
   "max_seq_len": 4096,
-  "train_minutes": 59.7,
-  "first_logged_loss": 3.179,
-  "final_logged_loss": 1.081
+  "max_new_tokens": 600,
+  "decoding": "greedy",
+  "repetition_penalty": 1.05,
+  "seed": 3407,
+  "optimizer": "adamw_8bit",
+  "training_time_min": 20.1,
+  "final_train_loss": 2.228,
+  "used_hi_opener": false,
+  "loss_history": [
+    {
+      "loss": 2.58,
+      "grad_norm": 0.7282,
+      "learning_rate": 0.00016,
+      "epoch": 1.0
+    },
+    {
+      "loss": 1.876,
+      "grad_norm": 0.7162,
+      "learning_rate": 4e-05,
+      "epoch": 2.0
+    }
+  ],
+  "trainer_metrics": {
+    "train_runtime": 1207.0,
+    "train_samples_per_second": 0.066,
+    "train_steps_per_second": 0.008,
+    "train_loss": 2.228,
+    "epoch": 2.0
+  },
+  "eval_seconds": {
+    "A_base": 1700,
+    "B_prompt": 504,
+    "C_finetuned": 541
+  }
 }

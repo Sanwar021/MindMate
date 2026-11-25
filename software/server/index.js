@@ -21,7 +21,7 @@ function pilotSeed() {
     return parsePilotFiles({
       autoScoresCsv: fs.readFileSync(path.join(results, 'comparison_summary.csv'), 'utf8'),
       escalationDetailCsv: fs.readFileSync(path.join(results, 'escalation_detail.csv'), 'utf8'),
-      trainLogs: ['qwen35_4b', 'llama32_3b'].map(model =>
+      trainLogs: ['gemma4_e4b', 'qwen35_4b', 'llama32_3b'].map(model =>
         JSON.parse(fs.readFileSync(path.join(logs, model, `train_log_${model}.json`), 'utf8')))
     });
   } catch { return {}; }

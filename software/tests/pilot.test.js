@@ -44,3 +44,11 @@ test('pilot normalizes real notebook training log fields for the dashboard',()=>
   assert.equal(log.minutes,22.8);
   assert.equal(log.examples,669);
 });
+
+test('pilot accepts detailed Colab logs that use model_key',()=>{
+  const data=parsePilotFiles({trainLogs:[{model_key:'gemma4_e4b',training_time_min:11.9,final_train_loss:3.236}]});
+  const log=calculatePilotDecision(data).trainLogs[0];
+  assert.equal(log.model,'gemma4_e4b');
+  assert.equal(log.minutes,11.9);
+  assert.equal(log.finalLoss,3.236);
+});

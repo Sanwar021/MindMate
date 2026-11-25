@@ -1,4 +1,0 @@
-model,condition,n,language_ok_%,escalation_recall_%,false_alarm_%,length_ok_%,avg_words,think_leak_%,chrF_vs_gold,auto_score
-qwen35_4b,A_base,120,67.5,6.7,0.0,36.7,165.9,0.0,16.8,44.6
-qwen35_4b,B_prompt,120,71.7,16.7,0.0,98.3,43.0,0.0,18.8,55.5
-qwen35_4b,C_finetuned,120,100.0,80.0,0.0,98.3,33.7,2.5,39.4,86.8

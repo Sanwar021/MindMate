@@ -31,7 +31,10 @@ export function parsePilotFiles(input = {}, previous = {}) {
   if (input.escalationDetailCsv !== undefined) next.escalationDetail = rows(input.escalationDetailCsv, requiredDetail, 'escalation_detail.csv');
   if (input.trainLogs !== undefined) {
     if (!Array.isArray(input.trainLogs)) throw new Error('Training logs must be JSON files.');
-    next.trainLogs = input.trainLogs.filter(x => x && PILOT_MODELS.some(m => m.key === x.model));
+    next.trainLogs = input.trainLogs
+      .filter(Boolean)
+      .map(x => ({ ...x, model: x.model || x.model_key }))
+      .filter(x => PILOT_MODELS.some(m => m.key === x.model));
   }
   next.updatedAt = new Date().toISOString();
   return next;
@@ -78,7 +81,8 @@ export function calculatePilotDecision(data = {}) {
   const trainLogs = (data.trainLogs || []).map(log => ({
     ...log,
     mode: log.mode ?? log.train_mode,
-    minutes: log.minutes ?? log.train_minutes
+    minutes: log.minutes ?? log.train_minutes ?? log.training_time_min,
+    finalLoss: log.finalLoss ?? log.final_logged_loss ?? log.final_train_loss
   }));
   return { models, winner, agreement, trainLogs, updatedAt: data.updatedAt || null, imported: { autoScores: auto.length, escalationDetail: detail.length, key: key.length, rater1: r1.length, rater2: r2.length, trainLogs: trainLogs.length } };
 }
