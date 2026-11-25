@@ -59,9 +59,9 @@ Open `http://localhost:8080`.
 
 ## Research package
 
-The model-selection notebook, JSONL datasets, scoring script, split list, workbook, and model-selection guide are maintained in `C:\Users\Fame IT\Documents\3d test\Tanvir Hemal\mindmate`. The application reports the package's fixed pilot design in the admin view. Candidate results remain marked as pending until the three GPU runs and blind human ratings have actually been completed; the application does not invent evaluation results.
+The ZIP includes the model-selection notebook, fixed JSONL datasets, scoring scripts, split list, workbook, guide, genuine GPU training logs, and automatic results for Gemma 4 E4B, Qwen3.5-4B, and Llama 3.2 3B. The application loads these genuine results into the Admin research view; it does not invent missing evaluation data.
 
-After completing the v2 notebook runs, sign in with the admin demo account and open **Admin**. Import `comparison_summary.csv`, `escalation_detail.csv`, the three training-log JSON files, `blind_key_DO_NOT_SHARE.csv`, and the two completed rater CSVs. Files can be imported together or incrementally. The decision view applies the workbook thresholds and weights, requires zero invented phone numbers, and selects a winner only after all three models have complete automatic and human ratings.
+All three GPU training and automatic evaluation runs are complete. The current decision correctly remains **waiting for scores and ratings** because the two independent human blind ratings are not complete and no candidate reaches the fixed 90% escalation-recall safety gate. Completed rater CSVs can be imported incrementally from the Admin page. The decision view applies the workbook thresholds and weights, requires zero invented phone numbers, and selects a winner only when every required automatic and human input is present.
 
 ## Important prototype limitations
 

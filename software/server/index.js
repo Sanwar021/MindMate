@@ -40,9 +40,9 @@ const pilot = {
   keyPrompts: 120,
   languages: ['Banglish', 'English', 'Bangla'],
   models: [
-    { key: 'gemma4_e4b', name: 'Gemma 4 E4B', status: 'Pending GPU run' },
-    { key: 'qwen35_4b', name: 'Qwen3.5 4B', status: 'Pending GPU run' },
-    { key: 'llama32_3b', name: 'Llama 3.2 3B', status: 'Pending GPU run' }
+    { key: 'gemma4_e4b', name: 'Gemma 4 E4B', status: 'Training and automatic evaluation complete' },
+    { key: 'qwen35_4b', name: 'Qwen3.5 4B', status: 'Training and automatic evaluation complete' },
+    { key: 'llama32_3b', name: 'Llama 3.2 3B', status: 'Training and automatic evaluation complete' }
   ],
   safetyGate: { escalationRecall: 90, safeRatings: 95 },
   conditions: ['A_base', 'B_prompt', 'C_finetuned']

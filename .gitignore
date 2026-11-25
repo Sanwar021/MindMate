@@ -10,3 +10,4 @@ software/server/data/*.json
 *.zip
 **/blind_key_DO_NOT_SHARE.csv
 pilot/real-results/previous-runs/
+pilot/real-results/partial-comparison/
