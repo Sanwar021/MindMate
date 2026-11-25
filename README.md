@@ -6,6 +6,7 @@ This folder contains the complete local software and the model-selection pilot i
 
 - `software/` — the MindMate student application, screening, multilingual support chat, safety interruption, resources, history, and admin research dashboard.
 - `pilot/` — the unchanged datasets, system prompt, v2 notebook, CPU scripts, evaluator, comparison script, workbook, guide, and tests.
+- `pilot/MindMate_Final_Model_Selection_Report.docx` — the professional pilot report with methods, training logs, automatic results, safety analysis, decision status, and remaining work.
 - `Start-MindMate.ps1` — installs the software dependencies when needed and starts the website.
 - `Verify-Project.ps1` — runs both the software tests and the CPU-only pilot tests.
 
