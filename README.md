@@ -31,7 +31,7 @@ Right-click `Verify-Project.ps1` and choose **Run with PowerShell**. A successfu
 
 - software tests passing;
 - the production website build completing;
-- five pilot tests passing.
+- all pilot tests passing (currently nine).
 
 ## Run the model pilot
 
@@ -65,3 +65,18 @@ The automatic three-model pilot is complete. The remaining work requires human a
 4. Use a safety-passing winner for final full-data training after counsellor review.
 
 Until those steps are complete, the correct project status is **waiting for scores and ratings**.
+
+## Phase 2 risk classifier
+
+The GPU-ready BanglaBERT/XLM-R safety-classifier pipeline is in
+`pilot/risk_classifier.py`. It preserves the fixed held-out conversations,
+uses conversation-grouped train/dev/test splits, chooses its high-recall
+threshold on dev only, and writes predictions, metrics, gates, confusion
+matrices, timings, and checkpoints for three seeds. See
+`pilot/RISK_CLASSIFIER.md` for exact Kaggle/Colab commands.
+
+Training is intentionally marked **not run** until the required
+`mindmate_synthetic_conversations.jsonl` (750 language records with a risk
+label on every student message) is supplied. The conversation-level labels in
+`train_full_230.jsonl` are not substituted because doing so would leak later
+disclosures into earlier turns.
